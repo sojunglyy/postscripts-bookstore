@@ -7,6 +7,7 @@ import Books from "./pages/Books";
 import Contact from "./pages/Contact";
 import LogIn from "./pages/LogIn";
 import Cart from "./pages/Cart";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <Footer />
     </main>
   );
 };
