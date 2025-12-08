@@ -23,7 +23,7 @@ const Home = () => {
           type="text"
           placeholder="search..."
           onChange={handleChange}
-          className="border rounded w-full lg:w-[60%] xl:w-[40%]"
+          className="block grow py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500 focus:outline-none border rounded"
         />
       </div>
       {/* list of books */}

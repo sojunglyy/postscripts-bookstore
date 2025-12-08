@@ -12,7 +12,7 @@
     @apply overflow-x-hidden;
   }
   body {
-    @apply bg-gray-100 text-gray-900 p-4;
+    @apply bg-gray-100 text-gray-900;
     background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
   }
   h1 {
@@ -29,16 +29,16 @@
     @apply bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer;
   }
   section {
-    @apply min-h-[80vh] flex flex-col gap-10 mt-10;
+    @apply min-h-[80vh] flex flex-col items-center gap-10 my-10 p-4;
   }
   footer {
-    @apply bg-black text-white;
+    @apply bg-black text-white flex justify-between p-4;
   }
 }
 
 @layer components {
   nav {
-    @apply flex justify-between items-center relative;
+    @apply flex justify-between items-center relative p-4;
 
     /* Desktop nav links */
     .nav-links {
