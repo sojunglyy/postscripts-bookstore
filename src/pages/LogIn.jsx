@@ -7,7 +7,7 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmitHandler = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       if (currentState === "Sign Up") {
@@ -27,7 +27,7 @@ const LogIn = () => {
     <section>
       <form
         className="flex flex-col items-center w-full md:max-w-[80%] py-10"
-        onSubmit={onSubmitHandler}
+        onSubmit={handleSubmit}
       >
         <div className="m-4">
           <h2 className="text-xl">{currentState}</h2>
@@ -95,7 +95,7 @@ const LogIn = () => {
           type="submit"
           className="cursor-pointer w-full bg-gray-800 text-white rounded-lg min-h-10 max-w-xs mt-10 hover:shadow-lg transition-shadow"
         >
-          Submit
+          {currentState}
         </button>
 
         {currentState === "Log In" ? (
