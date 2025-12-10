@@ -2,9 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Books from "./pages/Books";
-import Contact from "./pages/Contact";
+import Book from "./pages/Book";
 import LogIn from "./pages/LogIn";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
@@ -15,9 +14,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="/books" element={<Books />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/book/:bookId" element={<Book />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
