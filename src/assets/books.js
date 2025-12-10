@@ -2,7 +2,7 @@ export const books = [
   {
     id: "1",
     title: "Placeholder",
-    author: "Matt Ridley",
+    author: "Sojung Lee",
     description: "description",
     price: 28,
     images: "/images/placeholder-book.jpg",
@@ -11,7 +11,7 @@ export const books = [
   {
     id: "2",
     title: "Tooth",
-    author: "Matt Ridley",
+    author: "Kevin Perrin",
     description: "description",
     price: 26,
     images: "/images/tooth-book.jpg",
@@ -20,7 +20,7 @@ export const books = [
   {
     id: "3",
     title: "Growing",
-    author: "Matt Ridley",
+    author: "Jane Doe",
     description: "description",
     price: 32,
     images: "/images/growing-book.jpg",
@@ -29,7 +29,7 @@ export const books = [
   {
     id: "4",
     title: "Cat",
-    author: "Matt Ridley",
+    author: "John Doe",
     description: "description",
     price: 36,
     images: "/images/cat-book.jpg",
@@ -38,7 +38,7 @@ export const books = [
   {
     id: "5",
     title: "Potato",
-    author: "Matt Ridley",
+    author: "Jenny Kim",
     description: "description",
     price: 28,
     images: "/images/potato-book.jpg",

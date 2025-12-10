@@ -16,14 +16,14 @@
     background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
   }
   h1 {
-    @apply font-heading text-2xl md:text-3xl;
+    @apply font-heading text-3xl;
   }
   p,
   span,
   a,
   li,
   ul {
-    @apply font-body;
+    @apply font-body text-base lg:text-xl;
   }
   .btn {
     @apply bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer;
@@ -32,7 +32,7 @@
     @apply min-h-[80vh] flex flex-col items-center gap-10 my-10 p-4;
   }
   footer {
-    @apply bg-black text-white flex justify-between p-4;
+    @apply bg-black text-white flex justify-between items-center p-4 h-35;
   }
 }
 
@@ -42,7 +42,7 @@
 
     /* Desktop nav links */
     .nav-links {
-      @apply hidden md:flex gap-4;
+      @apply hidden lg:flex gap-4;
     }
 
     .nav-links p {
@@ -51,12 +51,12 @@
 
     /* Mobile / mid-size dropdown state */
     .nav-links.open {
-      @apply flex flex-row justify-between absolute left-0 right-0 top-full mt-3 bg-slate-50 shadow-sm p-4 md:static md:bg-transparent md:mt-0 md:shadow-none;
+      @apply flex flex-row justify-around absolute left-0 right-0 top-full mt-3 bg-slate-50 shadow-sm p-4 md:static md:bg-transparent md:mt-0 md:shadow-none;
     }
 
     /* Hamburger button – visible on small / mid screens, hidden on large */
     .hamburger-btn {
-      @apply flex flex-col justify-between w-8 h-6 bg-transparent border-none cursor-pointer md:hidden;
+      @apply flex flex-col justify-between w-8 h-6 bg-transparent border-none cursor-pointer lg:hidden;
     }
 
     .hamburger-btn .bar {
@@ -75,6 +75,7 @@
       transform: translateY(-7px) rotate(-45deg);
     }
   }
+
   #hero {
   }
 }

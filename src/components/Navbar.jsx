@@ -15,19 +15,6 @@ const Navbar = () => {
 
   return (
     <nav>
-      {/* search button */}
-      <button
-        className="search-btn"
-        type="button"
-        aria-label="Toggle search bar"
-      >
-        <img
-          src="/images/search-icon.png"
-          alt="search button"
-          className="w-8"
-        />
-      </button>
-
       <Link to="/" onClick={() => handleNavClick("home")}>
         <h1>Postscripts</h1>
       </Link>
@@ -45,16 +32,9 @@ const Navbar = () => {
         <span className={`bar ${isMenuOpen ? "open" : ""}`} />
       </button>
 
+      {/* nav bar links */}
+
       <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
-        <NavLink
-          to="/about"
-          className={`${
-            activeLink === "about" ? activeLinkStyle : inactiveLinkStyle
-          }`}
-          onClick={() => handleNavClick("about")}
-        >
-          <p>About</p>
-        </NavLink>
         <NavLink
           to="/books"
           className={`${
@@ -64,15 +44,7 @@ const Navbar = () => {
         >
           <p>Books</p>
         </NavLink>
-        <NavLink
-          to="/contact"
-          className={`${
-            activeLink === "contact" ? activeLinkStyle : inactiveLinkStyle
-          }`}
-          onClick={() => handleNavClick("contact")}
-        >
-          <p>Contact</p>
-        </NavLink>
+
         <NavLink
           to="/login"
           className={`${

@@ -1,41 +1,40 @@
 import React from "react";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { books } from "../assets/books.js";
 
 const Home = () => {
-  const [searchField, setSearchField] = useState("");
-  const matchedBooks = books.filter((book) => {
-    return book.title.toLowerCase().includes(searchField.toLowerCase());
-  });
-  const handleChange = (event) => {
-    setSearchField(event.target.value);
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <section id="hero">
-      <p className="text-xl">
+      <p className="text-xl lg:text-6xl lg:mb-10 lg:w-[80%]">
         Explore our thoughtfully selected collection of books curated in the
         field of art and design, chosen to empower artists, designers, and
         visionary thinkers.
       </p>
-      {/* search bar */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="search..."
-          onChange={handleChange}
-          className="block grow py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500 focus:outline-none border rounded"
-        />
-      </div>
-      {/* list of books */}
-      <div className="books-container grid grid-cols-2 md:grid-cols-3 gap-10 w-full lg:w-[60%]">
-        {matchedBooks.map((book) => (
-          <div className="w-full">
-            <img src={book.images} alt="book cover" className="w-full" />
+
+      {/* a few books from the collection */}
+      <div className="books-container grid grid-cols-2 xl:grid-cols-4 gap-10 w-full my-10">
+        {books.slice(0, 4).map((book) => (
+          <Link key={book.id} to={`/book/${book.id}`}>
+            <div className="overflow-hidden">
+              <img src={book.images} alt="book cover" className="w-full" />
+            </div>
             <p>{book.title}</p>
             <p>€{book.price}</p>
-          </div>
+          </Link>
         ))}
       </div>
+
+      <Link
+        to="/books"
+        onClick={handleScrollToTop}
+        className="bg-black text-white rounded-md px-4 py-3 my-8"
+      >
+        <p>Go To The Collection</p>
+      </Link>
     </section>
   );
 };
