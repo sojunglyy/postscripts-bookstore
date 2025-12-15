@@ -7,20 +7,24 @@ import Book from "./pages/Book";
 import LogIn from "./pages/LogIn";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
+import { CartProvider } from "./context/CartContext";
 
 const App = () => {
+  // add local storage persistence for the cart
   return (
-    <main>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/books" element={<Books />} />
-        <Route path="/book/:bookId" element={<Book />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-      <Footer />
-    </main>
+    <CartProvider>
+      <main>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/book/:bookId" element={<Book />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        <Footer />
+      </main>
+    </CartProvider>
   );
 };
 
