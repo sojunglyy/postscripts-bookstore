@@ -1,10 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { books } from "../assets/books";
+import { useCart } from "../context/CartContext";
 
 const Book = () => {
   const { bookId } = useParams();
   const [currentBook, setCurrentBook] = useState(null);
+  const { cartItems, addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (currentBook) {
+      addToCart(currentBook);
+    }
+  };
+
+  console.log("cart items: ", cartItems);
 
   const fetchBookData = useCallback(() => {
     books.find((book) => {
@@ -47,6 +57,7 @@ const Book = () => {
           <button
             type="button"
             className="my-10 border rounded-md p-2 cursor-pointer hover:bg-black hover:text-white"
+            onClick={handleAddToCart}
           >
             Add To Cart
           </button>
