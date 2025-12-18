@@ -7,7 +7,7 @@ import Book from "./pages/Book";
 import LogIn from "./pages/LogIn";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./context/CartContext.jsx";
 
 const App = () => {
   // add local storage persistence for the cart

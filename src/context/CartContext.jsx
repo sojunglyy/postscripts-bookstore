@@ -1,12 +1,31 @@
-import { createContext, useCallback, useContext, useState } from "react";
-
-// creates an object with Provider
-const CartContext = createContext(null);
+import { useCallback, useState } from "react";
+import CartContext from "./cartContext";
 
 // a component that wraps my app and supplies the context value
 export function CartProvider({ children }) {
   // cart state
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([
+    {
+      id: "1",
+      title: "Placeholder",
+      author: "Sojung Lee",
+      description: "description",
+      price: 28,
+      images: "/images/placeholder-book.jpg",
+      category: "art",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      title: "Tooth",
+      author: "Kevin Perrin",
+      description: "description",
+      price: 26,
+      images: "/images/tooth-book.jpg",
+      category: "art",
+      quantity: 1,
+    },
+  ]);
 
   //   add item to cart
   const addToCart = useCallback((book) => {
@@ -17,7 +36,9 @@ export function CartProvider({ children }) {
       if (existingItem) {
         // increment quantity
         return prev.map((item) =>
-          item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === book.id
+            ? { ...item, quantity: (item.quantity ?? 0) + 1 }
+            : item
         );
       } else {
         // add it with quantity 1
@@ -32,34 +53,42 @@ export function CartProvider({ children }) {
   }, []);
 
   //   update quantity of a specific item
-  const updateQuantity = useCallback((bookId) => {
-    if (cartItems.find((item) => item.id === bookId)) {
-    }
+  const updateQuantity = useCallback((bookId, nextQuantity) => {
+    setCartItems((prev) => {
+      // if the next quantity is below 0, it removes
+      if (nextQuantity <= 0) {
+        return prev.filter((item) => item.id !== bookId);
+      }
+
+      return prev.map((item) =>
+        item.id === bookId ? { ...item, quantity: nextQuantity } : item
+      );
+    });
   }, []);
 
-  //   clear entire cart
-
   // get total number of items in cart
+  const getTotalItems = useCallback(() => {
+    return cartItems.reduce((sum, item) => sum + (item.quantity ?? 1), 0);
+  }, [cartItems]);
 
   // get total price of all items
-
-  // check if item is in cart
+  const getTotalPrice = useCallback(() => {
+    return cartItems.reduce((sum, item) => {
+      const price = Number(item.price) || 0;
+      const qty = item.quantity ?? 1;
+      return sum + price * qty;
+    }, 0);
+  }, [cartItems]);
 
   //   value
   const value = {
     cartItems,
     addToCart,
     removeFromCart,
+    updateQuantity,
+    getTotalItems,
+    getTotalPrice,
   };
 
-  return <CartContext value={value}>{children}</CartContext>;
-}
-
-// custom hook for using the context in any components
-export function useCart() {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
-  return context;
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

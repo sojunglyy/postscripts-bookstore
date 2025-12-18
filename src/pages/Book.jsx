@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { books } from "../assets/books";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/useCart";
 
 const Book = () => {
   const { bookId } = useParams();
