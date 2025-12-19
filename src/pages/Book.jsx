@@ -38,7 +38,7 @@ const Book = () => {
   }
 
   return (
-    <section>
+    <section id="book">
       <div className="flex flex-col md:flex-row gap-10 my-10 xl:mb-20">
         <div className="book-img w-full flex justify-center md:max-w-[50%]">
           <img

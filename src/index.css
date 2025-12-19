@@ -14,6 +14,7 @@
   body {
     @apply bg-gray-100 text-gray-900;
     background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+    backdrop-filter: blur(1px);
   }
   h1 {
     @apply font-heading text-3xl;
@@ -23,16 +24,16 @@
   a,
   li,
   ul {
-    @apply font-body text-base lg:text-xl;
-  }
-  .btn {
-    @apply bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer;
+    @apply font-body text-base lg:text-lg;
   }
   section {
-    @apply min-h-[80vh] flex flex-col items-center gap-10 my-10 p-4;
+    @apply min-h-[90vh] flex flex-col items-center gap-10 my-10 p-5;
   }
   footer {
-    @apply bg-black text-white flex justify-between items-center p-4 h-35;
+    @apply bg-gray-950 text-white flex flex-col items-center gap-5 w-full h-48 pt-7 lg:flex-row lg:justify-between lg:p-10;
+  }
+  .btn {
+    @apply text-white bg-gray-950 px-4 py-2 rounded-md cursor-pointer;
   }
 }
 
@@ -45,37 +46,62 @@
       @apply hidden lg:flex gap-4;
     }
 
-    .nav-links p {
-      @apply text-gray-900 hover:text-blue-500 transition-colors;
-    }
-
     /* Mobile / mid-size dropdown state */
     .nav-links.open {
-      @apply flex flex-row justify-around absolute left-0 right-0 top-full mt-3 bg-slate-50 shadow-sm p-4 md:static md:bg-transparent md:mt-0 md:shadow-none;
+      @apply flex flex-row justify-around absolute left-5 right-5 top-full bg-gray-950 p-4 rounded-md lg:static lg:bg-transparent;
     }
 
-    /* Hamburger button – visible on small / mid screens, hidden on large */
-    .hamburger-btn {
+    .nav-link.active {
+      @apply font-semibold;
+    }
+
+    /* Menu button – visible on small / mid screens, hidden on large */
+    .menu-btn {
       @apply flex flex-col justify-between w-8 h-6 bg-transparent border-none cursor-pointer lg:hidden;
     }
 
-    .hamburger-btn .bar {
+    .menu-btn .bar {
       @apply block h-[2px] w-full bg-gray-800 transition-transform;
     }
 
-    .hamburger-btn .bar.open:nth-child(1) {
+    .menu-btn .bar.open:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
 
-    .hamburger-btn .bar.open:nth-child(2) {
+    .menu-btn .bar.open:nth-child(2) {
       @apply opacity-0;
     }
 
-    .hamburger-btn .bar.open:nth-child(3) {
+    .menu-btn .bar.open:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
   }
 
   #hero {
+    .main-text {
+      @apply md:text-xl lg:w-[90%] lg:text-4xl lg:my-20 xl:text-6xl xl:my-30;
+    }
+    .books-container {
+      @apply grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-20 w-full mt-10 mb-30;
+    }
+    .go-to-btn {
+      @apply text-3xl mb-30;
+    }
+  }
+
+  #books {
+    .search-bar {
+      @apply mb-20;
+
+      input {
+        @apply block grow py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500 focus:outline-none border rounded;
+      }
+    }
+    .books-container {
+      @apply grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 xl:gap-40 w-full lg:w-[80%] mb-10;
+    }
+  }
+
+  #book {
   }
 }

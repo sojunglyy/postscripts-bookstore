@@ -9,14 +9,14 @@ const Home = () => {
 
   return (
     <section id="hero">
-      <p className="text-xl lg:text-6xl lg:mb-10 lg:w-[80%]">
+      <p className="main-text">
         Explore our thoughtfully selected collection of books curated in the
         field of art and design, chosen to empower artists, designers, and
         visionary thinkers.
       </p>
 
       {/* a few books from the collection */}
-      <div className="books-container grid grid-cols-2 xl:grid-cols-4 gap-10 w-full my-10">
+      <div className="books-container">
         {books.slice(0, 4).map((book) => (
           <Link key={book.id} to={`/book/${book.id}`}>
             <div className="overflow-hidden">
@@ -28,12 +28,8 @@ const Home = () => {
         ))}
       </div>
 
-      <Link
-        to="/books"
-        onClick={handleScrollToTop}
-        className="bg-black text-white rounded-md px-4 py-3 my-8"
-      >
-        <p>Go To The Collection</p>
+      <Link to="/books" onClick={handleScrollToTop}>
+        <p className="go-to-btn">Go To The Collection</p>
       </Link>
     </section>
   );

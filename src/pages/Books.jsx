@@ -11,23 +11,14 @@ const Books = () => {
     setSearchField(event.target.value);
   };
   return (
-    <section>
-      <div>
-        <h2 className="text-xl">Our Books</h2>
-      </div>
-
+    <section id="books">
       {/* search bar */}
-      <div className="search-bar mb-10">
-        <input
-          type="text"
-          placeholder="search..."
-          onChange={handleChange}
-          className="block grow py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500 focus:outline-none border rounded"
-        />
+      <div className="search-bar">
+        <input type="text" placeholder="search..." onChange={handleChange} />
       </div>
 
       {/* matched books */}
-      <div className="books-container grid grid-cols-2 md:grid-cols-3 gap-10 w-full lg:w-[60%] mb-10">
+      <div className="books-container">
         {matchedBooks.map((book) => (
           <Link key={book.id} to={`/book/${book.id}`}>
             <div className="overflow-hidden">

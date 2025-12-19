@@ -5,9 +5,6 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const activeLinkStyle = "text-blue-500";
-  const inactiveLinkStyle = "text-gray-500";
-
   const handleNavClick = (link) => {
     setActiveLink(link);
     setIsMenuOpen(false);
@@ -15,31 +12,33 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/" onClick={() => handleNavClick("home")}>
-        <h1>Postscripts</h1>
-      </Link>
+      <div>
+        <Link to="/" onClick={() => handleNavClick("home")}>
+          <h1>Postscripts</h1>
+        </Link>
+      </div>
 
-      {/* Hamburger button */}
-      <button
-        className="hamburger-btn"
-        type="button"
-        aria-label="Toggle navigation"
-        aria-expanded={isMenuOpen}
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-      >
-        <span className={`bar ${isMenuOpen ? "open" : ""}`} />
-        <span className={`bar ${isMenuOpen ? "open" : ""}`} />
-        <span className={`bar ${isMenuOpen ? "open" : ""}`} />
-      </button>
+      {/* menu button */}
+      <div>
+        <button
+          className="menu-btn"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+        >
+          <span className={`bar ${isMenuOpen ? "open" : ""}`} />
+          <span className={`bar ${isMenuOpen ? "open" : ""}`} />
+          <span className={`bar ${isMenuOpen ? "open" : ""}`} />
+        </button>
+      </div>
 
       {/* nav bar links */}
 
       <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         <NavLink
           to="/books"
-          className={`${
-            activeLink === "books" ? activeLinkStyle : inactiveLinkStyle
-          }`}
+          className={`nav-link ${activeLink === "books" ? "active" : ""}`}
           onClick={() => handleNavClick("books")}
         >
           <p>Books</p>
@@ -47,18 +46,14 @@ const Navbar = () => {
 
         <NavLink
           to="/login"
-          className={`${
-            activeLink === "login" ? activeLinkStyle : inactiveLinkStyle
-          }`}
+          className={`nav-link ${activeLink === "login" ? "active" : ""}`}
           onClick={() => handleNavClick("login")}
         >
           <p>Login</p>
         </NavLink>
         <NavLink
           to="/cart"
-          className={`${
-            activeLink === "cart" ? activeLinkStyle : inactiveLinkStyle
-          }`}
+          className={`nav-link ${activeLink === "cart" ? "active" : ""}`}
           onClick={() => handleNavClick("cart")}
         >
           <p>Cart</p>
