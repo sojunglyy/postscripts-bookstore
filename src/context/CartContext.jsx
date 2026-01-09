@@ -1,31 +1,27 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import CartContext from "./cartContext";
 
 // a component that wraps my app and supplies the context value
 export function CartProvider({ children }) {
-  // cart state
-  const [cartItems, setCartItems] = useState([
-    {
-      id: "1",
-      title: "Placeholder",
-      author: "Sojung Lee",
-      description: "description",
-      price: 28,
-      images: "/images/placeholder-book.jpg",
-      category: "art",
-      quantity: 1,
-    },
-    {
-      id: "2",
-      title: "Tooth",
-      author: "Kevin Perrin",
-      description: "description",
-      price: 26,
-      images: "/images/tooth-book.jpg",
-      category: "art",
-      quantity: 1,
-    },
-  ]);
+  // Initialize cart state from localStorage
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const storedCart = localStorage.getItem("cartItems");
+      return storedCart ? JSON.parse(storedCart) : [];
+    } catch (error) {
+      console.error("Error loading cart from localStorage:", error);
+      return [];
+    }
+  });
+
+  // Save cartItems to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    } catch (error) {
+      console.error("Error saving cart to localStorage:", error);
+    }
+  }, [cartItems]);
 
   //   add item to cart
   const addToCart = useCallback((book) => {

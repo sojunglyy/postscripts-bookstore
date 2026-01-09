@@ -13,10 +13,12 @@ const Cart = () => {
 
   if (cartItems.length === 0) {
     return (
-      <section>
-        <h2>Cart</h2>
-        <p>Your cart is empty</p>
-      </section>
+      <>
+        <Navbar />
+        <section id="cart">
+          <p className="empty-cart">Your cart is empty</p>
+        </section>
+      </>
     );
   }
 
