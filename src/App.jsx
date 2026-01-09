@@ -14,7 +14,6 @@ const App = () => {
   return (
     <CartProvider>
       <main>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<Books />} />
@@ -22,7 +21,6 @@ const App = () => {
           <Route path="/login" element={<LogIn />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
-        <Footer />
       </main>
     </CartProvider>
   );

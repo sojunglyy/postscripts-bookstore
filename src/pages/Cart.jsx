@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../context/useCart";
+import Navbar from "../components/Navbar";
 
 const Cart = () => {
   const {
@@ -20,97 +21,91 @@ const Cart = () => {
   }
 
   return (
-    <section id="cart">
-      <div>
-        <h2>Cart</h2>
-      </div>
+    <>
+      <Navbar />
+      <section id="cart">
+        <div className="cart-container">
+          {/* items in the cart */}
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-single-item">
+              {/* item image */}
+              <div className="cart-image-container">
+                <img src={item.images} alt="book cover" />
+              </div>
 
-      <div className="w-full lg:w-1/2 flex flex-col gap-10">
-        {/* items in the cart */}
-        {cartItems.map((item) => (
-          <div key={item.id} className="w-full flex flex-row gap-4">
-            {/* item image */}
-            <div className="w-32 object-contain">
-              <img src={item.images} alt="book cover" />
+              {/* item info */}
+              <div className="cart-item-info">
+                <div className="item-title">
+                  <h3>{item.title}</h3>
+                </div>
+
+                {/* adjust quantity */}
+                <div className="item-quantity">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      updateQuantity(item.id, (item.quantity ?? 1) - 1)
+                    }
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity ?? 1}</span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      updateQuantity(item.id, (item.quantity ?? 1) + 1)
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* subtotal price */}
+                <div className="item-subtotal">
+                  <p>
+                    €
+                    {((Number(item.price) || 0) * (item.quantity ?? 1)).toFixed(
+                      2
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* remove button */}
+
+              <button
+                type="button"
+                aria-label="Remove from cart"
+                onClick={() => removeFromCart(item.id)}
+                className="remove-btn"
+              >
+                <img src="/icons/trash_bin.svg" alt="" aria-hidden="true" />
+              </button>
             </div>
+          ))}
+        </div>
 
-            {/* item info */}
-            <div className="w-full grid grid-cols-3 items-center justify-items-center">
-              <div className="w-full flex justify-center">
-                <h3>{item.title}</h3>
-              </div>
-
-              {/* adjust quantity */}
-              <div className="w-full flex items-center justify-center">
-                <button
-                  type="button"
-                  onClick={() =>
-                    updateQuantity(item.id, (item.quantity ?? 1) - 1)
-                  }
-                >
-                  -
-                </button>
-                <span className="mx-3">{item.quantity ?? 1}</span>
-                <button
-                  type="button"
-                  onClick={() =>
-                    updateQuantity(item.id, (item.quantity ?? 1) + 1)
-                  }
-                >
-                  +
-                </button>
-              </div>
-
-              {/* subtotal price */}
-              <div className="w-full flex justify-center">
-                <p>
-                  €
-                  {((Number(item.price) || 0) * (item.quantity ?? 1)).toFixed(
-                    2
-                  )}
-                </p>
-              </div>
-            </div>
-
-            {/* remove button */}
-
-            <button
-              type="button"
-              aria-label="Remove from cart"
-              onClick={() => removeFromCart(item.id)}
-              className="p-2 rounded hover:opacity-80 hover:cursor-pointer"
-            >
-              <img
-                src="/icons/trash_bin.svg"
-                alt=""
-                aria-hidden="true"
-                className="w-5 h-5"
-              />
-            </button>
+        {/* total price section*/}
+        <div className="total-price-container">
+          <div className="total-items">
+            <h3>Items:</h3>
+            <p>{getTotalItems()}</p>
           </div>
-        ))}
-      </div>
 
-      {/* total price section*/}
-      <div className="w-1/2 flex flex-col items-center gap-2 mt-14">
-        <div className="w-full flex flex-row justify-between">
-          <h3>Items:</h3>
-          <p className="font-bold">{getTotalItems()}</p>
+          <div className="total-price">
+            <h3>Total:</h3>
+            <p>€{getTotalPrice().toFixed(2)}</p>
+          </div>
         </div>
 
-        <div className="w-full flex flex-row justify-between">
-          <h3>Total:</h3>
-          <p className="font-bold">€{getTotalPrice().toFixed(2)}</p>
+        {/* order */}
+        <div className="checkout">
+          <button id="checkout-btn" className="custom-btn">
+            Proceed To Check Out
+          </button>
         </div>
-      </div>
-
-      {/* order */}
-      <div className="w-full flex justify-center mt-20">
-        <button className="w-48 h-12 bg-black text-white rounded-md">
-          Proceed To Check Out
-        </button>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

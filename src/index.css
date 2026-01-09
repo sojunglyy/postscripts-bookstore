@@ -13,95 +13,274 @@
   }
   body {
     @apply bg-gray-100 text-gray-900;
-    background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
-    backdrop-filter: blur(1px);
+    /* background-image: url("https://www.transparenttextures.com/patterns/batthern.png"); */
+    /* backdrop-filter: blur(1px); */
   }
   h1 {
-    @apply font-heading text-3xl;
+    @apply font-heading text-3xl font-medium;
+  }
+  h2 {
+    @apply font-body text-2xl;
   }
   p,
   span,
   a,
   li,
-  ul {
-    @apply font-body text-base lg:text-lg;
+  ul,
+  label,
+  input {
+    @apply font-body text-base;
   }
   section {
-    @apply min-h-[90vh] flex flex-col items-center gap-10 my-10 p-5;
+    @apply min-h-[90vh] flex flex-col items-center gap-10 p-5;
   }
   footer {
     @apply bg-gray-950 text-white flex flex-col items-center gap-5 w-full h-48 pt-7 lg:flex-row lg:justify-between lg:p-10;
   }
-  .btn {
-    @apply text-white bg-gray-950 px-4 py-2 rounded-md cursor-pointer;
+  .custom-btn {
+    @apply block cursor-pointer rounded-md text-white bg-gray-900 hover:shadow-lg transition-shadow my-10 py-4 px-2;
   }
 }
 
 @layer components {
   nav {
-    @apply flex justify-between items-center relative p-4;
+    @apply flex flex-col items-center;
 
-    /* Desktop nav links */
-    .nav-links {
-      @apply hidden lg:flex gap-4;
+    .nav-container {
+      @apply w-full flex justify-between items-center relative p-4;
+
+      .search-btn {
+        @apply block cursor-pointer;
+      }
+
+      /* Desktop nav links */
+      .nav-links {
+        @apply hidden lg:flex gap-6;
+      }
+
+      /* Mobile dropdown state */
+      .nav-links.open {
+        @apply absolute top-full right-5 flex flex-col items-center bg-red-300 p-4 gap-8 min-h-100 lg:static lg:flex-row lg:min-h-auto lg:bg-transparent;
+      }
+
+      .nav-link.active {
+        @apply font-semibold;
+      }
+
+      /* Menu button – visible on small / mid screens, hidden on large */
+      .menu-btn {
+        @apply flex flex-col justify-between w-8 h-6 bg-transparent border-none cursor-pointer lg:hidden;
+      }
+
+      .menu-btn .bar {
+        @apply block h-[2px] w-full bg-gray-800 transition-transform;
+      }
+
+      .menu-btn .bar.open:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-btn .bar.open:nth-child(2) {
+        @apply opacity-0;
+      }
+
+      .menu-btn .bar.open:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
     }
 
-    /* Mobile / mid-size dropdown state */
-    .nav-links.open {
-      @apply flex flex-row justify-around absolute left-5 right-5 top-full bg-gray-950 p-4 rounded-md lg:static lg:bg-transparent;
+    .search-container {
+      @apply hidden;
+    }
+    .search-container.open {
+      @apply block w-full bg-white;
     }
 
-    .nav-link.active {
-      @apply font-semibold;
-    }
-
-    /* Menu button – visible on small / mid screens, hidden on large */
-    .menu-btn {
-      @apply flex flex-col justify-between w-8 h-6 bg-transparent border-none cursor-pointer lg:hidden;
-    }
-
-    .menu-btn .bar {
-      @apply block h-[2px] w-full bg-gray-800 transition-transform;
-    }
-
-    .menu-btn .bar.open:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .menu-btn .bar.open:nth-child(2) {
-      @apply opacity-0;
-    }
-
-    .menu-btn .bar.open:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+    .search-popup {
+      @apply w-full min-h-30 flex flex-col items-center bg-green-300 p-4 gap-4;
+      .search-bar {
+        @apply w-full lg:w-70 px-2 py-1 border block grow focus:outline-none rounded;
+      }
+      .searched-books {
+        @apply w-full lg:w-70 flex justify-start gap-5;
+        .searched-book > img {
+          @apply w-20;
+        }
+      }
     }
   }
 
   #hero {
-    .main-text {
-      @apply md:text-xl lg:w-[90%] lg:text-4xl lg:my-20 xl:text-6xl xl:my-30;
+    .title-container {
+      @apply flex flex-col items-center justify-center gap-6 mb-10;
     }
-    .books-container {
-      @apply grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 xl:gap-20 w-full mt-10 mb-30;
+    h1 {
+      @apply text-7xl;
     }
-    .go-to-btn {
-      @apply text-3xl mb-30;
+    p {
+      @apply text-xl;
+    }
+    .img-container {
+      @apply w-full lg:w-1/2 object-cover;
+    }
+    .open-btn {
+      @apply text-2xl border border-gray-950 p-2 rounded-md cursor-pointer;
     }
   }
 
   #books {
-    .search-bar {
-      @apply mb-20;
-
-      input {
-        @apply block grow py-1.5 pr-3 pl-1 text-base placeholder:text-gray-500 focus:outline-none border rounded;
-      }
-    }
+    /* background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+    backdrop-filter: blur(1px); */
     .books-container {
-      @apply grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 xl:gap-40 w-full lg:w-[80%] mb-10;
+      @apply grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-20 w-full my-10;
+      .book-simple-info {
+        @apply p-4 flex flex-col gap-3;
+        .book-cover-container {
+          @apply overflow-hidden object-cover;
+        }
+        .book-info-container {
+          @apply rounded-lg bg-gray-100 p-2;
+        }
+      }
     }
   }
 
   #book {
+    @apply p-0;
+    .book-info-container {
+      @apply w-full lg:w-[80%] flex flex-col gap-5;
+    }
+    .book-image-container {
+      @apply w-full flex justify-center items-center  p-24;
+      background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+      backdrop-filter: blur(1px);
+
+      img {
+        @apply max-w-[80%] lg:max-w-[40%];
+      }
+    }
+
+    .book-info {
+      @apply p-5 mx-5 lg:mx-30;
+
+      h2 {
+        @apply text-3xl;
+      }
+
+      p {
+        @apply text-base;
+      }
+
+      hr {
+        @apply my-10 text-gray-500;
+      }
+    }
+    #add-to-cart-btn {
+      @apply w-[80%] lg:w-[40%];
+    }
+  }
+
+  #cart {
+    .cart-container {
+      @apply w-full lg:w-1/2 flex flex-col gap-10 my-10;
+
+      .cart-single-item {
+        @apply w-full flex flex-row gap-4;
+
+        .cart-image-container {
+          @apply w-32 object-contain;
+        }
+
+        .cart-item-info {
+          @apply w-full grid grid-cols-3 items-center justify-items-center;
+
+          .item-title {
+            @apply w-full flex justify-center;
+          }
+
+          .item-quantity {
+            @apply w-full flex items-center justify-center;
+            span {
+              @apply mx-3;
+            }
+          }
+
+          .item-subtotal {
+            @apply w-full flex justify-center;
+          }
+        }
+        .remove-btn {
+          @apply p-2 rounded hover:opacity-80 hover:cursor-pointer;
+          img {
+            @apply w-5 h-5;
+          }
+        }
+      }
+    }
+
+    .total-price-container {
+      @apply w-1/2 flex flex-col items-center gap-2 mt-14;
+
+      p {
+        @apply font-bold;
+      }
+
+      .total-items {
+        @apply w-full flex flex-row justify-between;
+      }
+
+      .total-price {
+        @apply w-full flex flex-row justify-between;
+      }
+    }
+
+    .checkout {
+      @apply w-full flex justify-center mt-20;
+
+      #checkout-btn {
+        @apply w-48 h-12;
+      }
+    }
+  }
+
+  #login {
+    .login-container {
+      @apply flex flex-col items-center w-full lg:w-[50%] p-4 my-10;
+
+      .login-form {
+        @apply flex flex-col items-center w-full p-2 mb-8;
+        .current-state {
+          @apply text-xl my-4;
+        }
+
+        .user-input-container {
+          @apply flex flex-col items-center gap-6 w-full lg:w-[40%] p-5;
+
+          .user-input {
+            @apply w-full;
+
+            label {
+              @apply block mb-2;
+            }
+
+            input {
+              @apply block w-full grow rounded-md px-2 py-1 outline-1 focus-within:outline-2 focus:outline-black;
+            }
+          }
+        }
+
+        #submit-btn {
+          @apply w-[80%] lg:w-[40%];
+        }
+      }
+
+      .switch-state-container {
+        @apply flex flex-col items-center w-full lg:w-[40%];
+
+        #switch-btn {
+          @apply w-[80%] lg:w-full mt-4;
+        }
+      }
+    }
   }
 }
