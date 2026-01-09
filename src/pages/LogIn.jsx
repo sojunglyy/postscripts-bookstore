@@ -53,7 +53,7 @@ const LogIn = () => {
                 <label for="email">Email</label>
                 <input
                   id="email"
-                  type="text"
+                  type="email"
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
